@@ -1,0 +1,20 @@
+https://chatgpt.com/s/t_6a5cf5d096448191a5b9094d8a99fc4e
+
+
+https://chatgpt.com/s/t_6a5cf6ef59408191a1c03deeeb8a311b
+
+
+
+
+do_meta_command(input_buffer); // returns 1 or 0
+
+
+Statement statement;
+
+prepare_statment(input_buffer, &statement);
+
+
+
+execute_statment(&statement);
+
+
