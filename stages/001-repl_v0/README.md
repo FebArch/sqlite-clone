@@ -57,7 +57,12 @@ Repeat
 
 ## Files
 
-main.cpp
+repl_v0.c
+or
+repl.cpp
+or repl.c
+
+all are same
 
 Contains
 
@@ -71,11 +76,11 @@ Contains
 
 InputBuffer
 
-buffer
+bufer -> type is of char*
+buffer = Stores user input String
 
-Stores user input
 
-buffer_size
+buffer_size -> just to store string length it is passed as 2nd argument to getline() and can be reallocated to larger value if the input string by user exceeds
 
 Capacity allocated for getline()
 

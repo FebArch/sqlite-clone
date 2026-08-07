@@ -98,7 +98,7 @@ void read_input(InputBuffer* inputBuffer){
     }
     
     // Ignoring new trailling character (\n)
-    inputBuffer->buffer_length = bytes_read;
+    inputBuffer->input_length = bytes_read-1;
     inputBuffer->buffer[bytes_read - 1] = 0;
 
 }

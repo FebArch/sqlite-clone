@@ -9,12 +9,12 @@ typedef struct {
 } InputBuffer;
 
 
-InputBuffer* new_input_buffer();
+InputBuffer* set_input_buffer();
 void read_input_buffer(InputBuffer* input_buffer);
 void close_input_buffer(InputBuffer* input_buffer);
 
 int main(){
-    InputBuffer* input_buffer = new_input_buffer();
+    InputBuffer* input_buffer = set_input_buffer();
     printf("~ ./db\n");
 
     while (1)
@@ -36,7 +36,7 @@ int main(){
     return 0;
 }
 
-InputBuffer* new_input_buffer(){
+InputBuffer* set_input_buffer(){
     InputBuffer* input_buffer = (InputBuffer *) malloc(sizeof(InputBuffer));
 
     input_buffer->buffer = NULL;
