@@ -51,7 +51,7 @@ typedef struct {
 
 typedef struct{
     uint32_t id;
-    char username[VARCHAR_255];
+    char username[VARCHAR_32];
     char email[VARCHAR_255];
 } Row;
 
@@ -202,11 +202,9 @@ void execute_statement(Statement *statement, Table* table)
     switch (statement->type)
     {
     case (STATEMENT_INSERT):
-        // cout << "This is where we would do an insert." << endl;
         execute_insert(statement, table);
         break;
     case (STATEMENT_SELECT):
-        // cout << "This is where we would do a select." << endl;
         execute_select(statement, table);
         break;
     }
@@ -215,14 +213,14 @@ void execute_statement(Statement *statement, Table* table)
 
 void* row_slot(Table* table, uint32_t row_num){
     uint32_t page_num = row_num / ROWS_PER_PAGE;
-    cout << "page_num: " << page_num << endl;
+    // cout << "page_num: " << page_num << endl;
     void* page = table->pages[page_num];
     
     if (page == NULL)
     {
         page = table->pages[page_num] = malloc(PAGE_SIZE);  //4096 bytes
     }
-    cout << "table->pages[page_num]: " << table->pages[page_num] << endl;
+    // cout << "table->pages[page_num]: " << table->pages[page_num] << endl;
 
     uint32_t row_offset = row_num % ROWS_PER_PAGE;  // 0 % 14 = 0
     uint32_t byte_offset = row_offset * ROW_SIZE;  // 0 * 291 = 0
@@ -232,10 +230,6 @@ void* row_slot(Table* table, uint32_t row_num){
 }
 
 void serialize_row(Row* source, void* destination){
-
-    // cout << source->username << ", ";
-    // cout << source->email << endl;
-    
     memcpy((destination + ID_OFFSET), &(source->id), ID_SIZE);
     memcpy((destination + USERNAME_OFFSET), &(source->username), USERNAME_SIZE);
     memcpy((destination + EMAIL_OFFSET), &(source->email), EMAIL_SIZE);
@@ -257,12 +251,8 @@ ExecuteQueryResult execute_insert(Statement* statement, Table* table){
 
 
 void deserialize_row(Row* destination, void* source){
-    // cout << destination->id <<", ";
-    // cout << destination->username << ", ";
-    // cout << destination->email << endl;
-
     memcpy(&(destination->id), source+ID_OFFSET, ID_SIZE);
-    memcpy(&(destination->username), source+USERNAME_OFFSET, USERNAME_OFFSET);
+    memcpy(&(destination->username), source+USERNAME_OFFSET, USERNAME_SIZE);
     memcpy(&(destination->email), source+EMAIL_OFFSET, EMAIL_SIZE);
 }
 
