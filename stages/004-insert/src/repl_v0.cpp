@@ -183,7 +183,7 @@ PrepareResult prepare_statement(InputBuffer *input_buffer, Statement* statement)
 {
     if (strncmp(input_buffer->buffer, "INSERT", 6) == 0)
     {
-        int args_assigned = sscanf(input_buffer->buffer, "INSERT %d %s %s", &(statement->row_to_insert.id), &(statement->row_to_insert.username), &(statement->row_to_insert.email));
+        int args_assigned = sscanf(input_buffer->buffer, "INSERT INTO users VALUES %d %s %s", &(statement->row_to_insert.id), &(statement->row_to_insert.username), &(statement->row_to_insert.email));
         statement->type = STATEMENT_INSERT;
         return PREPARE_SUCCESS;
     }
