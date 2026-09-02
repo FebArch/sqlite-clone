@@ -1,0 +1,11 @@
+#ifndef META_COMMANDS
+#define META_COMMANDS
+
+typedef enum {
+    META_COMMANDS_SUCCESS,
+    META_COMMANDS_FAILURE
+} META_COMMANDS_RESULT;
+
+META_COMMANDS_RESULT do_meta_commands();
+
+#endif
