@@ -1,3 +1,5 @@
+// SQL Compiler
+
 #ifndef STATEMENT
 #define STATEMENT
 
